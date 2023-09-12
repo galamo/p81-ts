@@ -256,4 +256,6 @@ const cats: Movie = {
 
 ## Exercises
 
+### Generics
+
 1. Queue Class with Generics
