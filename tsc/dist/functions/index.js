@@ -34,5 +34,17 @@ function functions() {
         isValid: 1,
     };
     printProduct(msProduct);
+    function printProductCondition(_a) {
+        var pName = _a.pName, _b = _a.print, print = _b === void 0 ? false : _b;
+        if (print) {
+            console.log("Print the product!!!! ".concat(pName));
+        }
+    }
+    printProductCondition({ pName: "googleAuthenticator", print: true });
+    function isLeapYear(year) {
+        return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+    }
+    console.log(isLeapYear(1900));
+    console.log(isLeapYear(2000));
 }
 exports.default = functions;

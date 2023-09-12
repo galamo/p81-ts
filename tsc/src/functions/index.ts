@@ -44,4 +44,23 @@ export default function functions() {
     isValid: 1,
   };
   printProduct(msProduct);
+
+  function printProductCondition({
+    pName,
+    print = false,
+  }: {
+    pName: string;
+    print?: boolean;
+  }) {
+    if (print) {
+      console.log(`Print the product!!!! ${pName}`);
+    }
+  }
+  printProductCondition({ pName: "googleAuthenticator", print: true });
+
+  function isLeapYear(year: number): boolean {
+    return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+  }
+  console.log(isLeapYear(1900));
+  console.log(isLeapYear(2000));
 }

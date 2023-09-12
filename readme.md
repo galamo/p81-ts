@@ -86,7 +86,6 @@ console.log(highSalaries);
 - The function will print the `productName` only if the print value is true
 - make the `print` default false
 - make `print` optional
-- make sure to put
 
 ##### Ex_2:
 
@@ -113,10 +112,140 @@ Write a isLeapyear() function that accepts a year and returns true/false dependi
 
 ### Objects
 
-1. function with Object exmaple
+1. function with Object example
 2. return type
 3. excess properties ignored
 4. Type aliases
+5. Structured types
+
+#### Example
+
+1. coordinates, randomCoordinates
+2. type point
+3. Nested Objects - Book example
+4. readOnly
+5. intersection - Colorfull circle
+
+##### Ex_1:
+
+- Write the Movie type alias to make the following two variables properly typed
+- Make sure that "originalTitle" is optional and "title" is readonly
+
+```javascript
+const dune: Movie = {
+  title: "Dune",
+  originalTitle: "Dune Part One",
+  director: "Denis Villeneuve",
+  releaseYear: 2021,
+  boxOffice: {
+    budget: 165000000,
+    grossUS: 108327830,
+    grossWorldwide: 400671789,
+  },
+};
+
+const cats: Movie = {
+  title: "Cats",
+  director: "Tom Hooper",
+  releaseYear: 2019,
+  boxOffice: {
+    budget: 95000000,
+    grossUS: 27166770,
+    grossWorldwide: 73833348,
+  },
+};
+```
+
+- Write a function called getProfit that accepts a single Movie object
+- It should return the movie's worldwide gross minus its budget
+  For example...
+  `getProfit(cats) => -21166652`
+
+### Array Types
+
+1. Array primitives
+2. Array Points,
+3. multidimensional - string[][]
+
+##### Ex_1:
+
+- Create an empty array of numbers called "ages":
+
+##### Ex_2:
+
+- Create an array variable called gameBoard that starts as an empty array.
+- It should be typed to hold a 2 dimensional array of strings
+
+##### Ex_3:
+
+- Create a Product type that contains a name and a price.
+- An example product could be:
+- {name: "coffee mug", price: 11.50}
+
+##### Ex_4:
+
+- Write a function called getTotal that accepts an array of Product types
+- It should return the sum of all the products' prices
+
+### Union
+
+##### Ex_1:
+
+1. simple union primitives
+2. Point Or Location - object
+3. type narrowing ( typeof ) , tax&price price\*tax
+4. union types in array primitive && Point&Loc
+5. literal types - are not only the type but the values themselves too
+6. Literal example - DayOfWeek
+
+##### Ex_1:
+
+- Create a variable called highScore that can be a number OR a boolean
+
+##### Ex_2:
+
+- create an array called stuff
+- it can be an array of numbers OR an array of strings
+- it cannot be an array of numbers and strings (mixed together)
+
+##### Ex_3:
+
+- Create a literal type called SkillLevel
+- There are 4 allowed values: "Beginner", "Intermediate", "Advanced", and "Expert"
+
+##### Ex_4:
+
+- Create a type called SkiSchoolStudent
+- name must be a string
+- age must be a number
+- sport must be "ski" or "snowboard"
+- level must be a value from the SkillLevel type (from above)
+
+##### Ex_5:
+
+- Define a type to represent an RGB color
+- r should be a number
+- g should be a number
+- b should be a number
+
+##### Ex_6:
+
+- h should be a number
+- s should be a number
+- l should be a number
+
+##### Ex_7:
+
+- Create an array called colors that can hold a mixture of RGB and HSL color types
+
+##### Ex_8:
+
+- Write a function called greet that accepts a single string OR an array of strings
+- It should print "Hello, <name>" for that single person OR greet each person in the array with the same format
+
+### Tuple
+
+### interfaces
 
 ### Casting
 
