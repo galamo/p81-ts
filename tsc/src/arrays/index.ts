@@ -55,3 +55,14 @@ function getDayFromDate(date: Date): DayOfWeeks {
   // more logic...
   return "Sunday";
 }
+
+let stuff: number[] | string[] = [];
+
+stuff = ["aaa", "bbb", "cccc"];
+stuff = [1, 2, 3, 4];
+// stuff = ["aa", 1]; TS Error
+type countriesCollection = number[] | string[];
+const countries: countriesCollection = getCountriesFromServer("countriesApi");
+function getCountriesFromServer(url?: string): countriesCollection {
+  return ["ISR", "BLR"];
+}

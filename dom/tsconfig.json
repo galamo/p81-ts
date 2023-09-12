@@ -1,0 +1,10 @@
+{
+  "ts-node": { "compilerOptions": {} },
+  "compilerOptions": {
+    "module": "es6",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "target": "ES5"
+  },
+  "exclude": ["node_modules"]
+}

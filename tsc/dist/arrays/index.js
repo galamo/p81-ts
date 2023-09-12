@@ -36,3 +36,10 @@ function getDayFromDate(date) {
     // more logic...
     return "Sunday";
 }
+var stuff = [];
+stuff = ["aaa", "bbb", "cccc"];
+stuff = [1, 2, 3, 4];
+var countries = getCountriesFromServer("countriesApi");
+function getCountriesFromServer(url) {
+    return ["ISR", "BLR"];
+}

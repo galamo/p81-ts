@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [name, setName] = useState<string>("");
 
-  function getItem(a: number): number {
-    return 1 + a;
+  function handler({ currentTarget }: FormEvent<HTMLInputElement>): void {
+    console.log(currentTarget?.value);
+    setName(currentTarget?.value);
   }
 
   return (
@@ -20,7 +22,8 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
+      <h1>Vite + React {name}</h1>
+      <input onChange={handler} type="text" />
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
