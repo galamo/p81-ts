@@ -26,6 +26,9 @@ songs.add({
   writer: "Snir SW",
 });
 
+type VV = {
+  a: 1;
+};
 function mergeFunction<T extends Song, U>(obj1: T, obj2: U): T & U {
   return {
     ...obj1,

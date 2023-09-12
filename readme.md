@@ -259,3 +259,12 @@ const cats: Movie = {
 ### Generics
 
 1. Queue Class with Generics
+
+<!-- Subjects -->
+
+Generics:
+
+1. Example of BuildIn Generics - querySelector Button.
+1. takes type of from json
+1. using key as string
+1. deprecated

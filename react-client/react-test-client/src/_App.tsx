@@ -18,7 +18,7 @@ function App() {
   const [name, setName] = useState<string>("");
   const [countries, setCountries] = useState();
   const [search, setSearch] = useState("");
-  // const ref = useRef<HTMLButtonElement>()
+  const ref = useRef<HTMLButtonElement>()
 
   function handler({ currentTarget }: FormEvent<HTMLInputElement>): void {
     console.log(currentTarget?.value);
@@ -122,5 +122,3 @@ function useEffectSubscribe<K>(
     };
   }, [dep]);
 }
-
-
