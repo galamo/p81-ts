@@ -186,6 +186,7 @@ const cats: Movie = {
 
 - Write a function called getTotal that accepts an array of Product types
 - It should return the sum of all the products' prices
+- hint: reduce
 
 ### Union
 
