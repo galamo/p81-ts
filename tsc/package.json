@@ -8,6 +8,7 @@
     "__compile": "tsc index.ts",
     "compile": "tsc --watch",
     "dev": "nodemon ./dist/index.js",
+    "start-dev": "ts-node src/index.ts",
     "start": "concurrently -k -p \"[{name}]\" -n \"CompileTS,MyApp\" -c \"red,green\" \"npm run compile\" \"npm run dev\" "
   },
   "keywords": [],
@@ -16,6 +17,7 @@
   "devDependencies": {
     "concurrently": "^8.2.1",
     "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   }
 }
