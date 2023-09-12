@@ -1,5 +1,7 @@
 import doSomething from "./types";
 import functions from "./functions";
+import init from "./arrays";
+init();
 functions();
 doSomething();
 const user: string = "galamouyal88@gmail.com";
