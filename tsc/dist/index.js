@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var types_1 = require("./types");
+var functions_1 = require("./functions");
+(0, functions_1.default)();
 (0, types_1.default)();
 var user = "galamouyal88@gmail.com";
 var age = 34;

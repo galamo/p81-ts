@@ -14,16 +14,15 @@ var products = ["P1", "P2", "P3"];
 var result = products.map(function (item) {
     return { name: item, type: "product" };
 });
-var salaries = [100, 222, 3300, 4400];
-var highSalaries = salaries.reduce(function (sal, currentSalary) {
-    if (currentSalary > 100) {
-        return sal + currentSalary;
-    }
-    else
-        return sal;
-}, 0);
-highSalaries.toLowerCase();
-console.log(highSalaries);
+console.log(result);
+// const salaries = [100, 222, 3300, 4400];
+// const highSalaries = salaries.reduce((sal: any, currentSalary: any) => {
+//   if (currentSalary > 100) {
+//     return sal + currentSalary;
+//   } else return sal;
+// }, 0);
+// highSalaries.toLowerCase();
+// console.log(highSalaries);
 // never
 function doSomething() { }
 exports.default = doSomething;

@@ -19,15 +19,16 @@ const products = ["P1", "P2", "P3"];
 const result = products.map((item) => {
   return { name: item, type: "product" };
 });
+console.log(result);
 
-const salaries = [100, 222, 3300, 4400];
-const highSalaries = salaries.reduce((sal: any, currentSalary: any) => {
-  if (currentSalary > 100) {
-    return sal + currentSalary;
-  } else return sal;
-}, 0);
-highSalaries.toLowerCase();
-console.log(highSalaries);
+// const salaries = [100, 222, 3300, 4400];
+// const highSalaries = salaries.reduce((sal: any, currentSalary: any) => {
+//   if (currentSalary > 100) {
+//     return sal + currentSalary;
+//   } else return sal;
+// }, 0);
+// highSalaries.toLowerCase();
+// console.log(highSalaries);
 
 // never
 
