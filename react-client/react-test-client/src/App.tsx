@@ -1,16 +1,22 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, useRef, useEffect } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
+function Greeter(): JSX.Element {
+  return <h1>aa</h1>;
+}
+
 function App() {
   const [count, setCount] = useState(0);
   const [name, setName] = useState<string>("");
+  const ref = useRef<HTMLButtonElement>(null);
 
   function handler({ currentTarget }: FormEvent<HTMLInputElement>): void {
     console.log(currentTarget?.value);
     setName(currentTarget?.value);
   }
+  useEffect(() => {}, []);
 
   return (
     <>
@@ -21,11 +27,12 @@ function App() {
         <a href="https://react.dev" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
+        <Greeter />
       </div>
       <h1>Vite + React {name}</h1>
       <input onChange={handler} type="text" />
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button ref={ref} onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
         <p>
@@ -39,4 +46,3 @@ function App() {
   );
 }
 
-export default App;

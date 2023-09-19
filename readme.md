@@ -246,7 +246,17 @@ const cats: Movie = {
 
 ### Tuple
 
+Generics:
+
+1. Example of BuildIn Generics - querySelector Button.
+1. takes type of from json
+1. using key as string
+1. deprecated
+
 ### interfaces
+
+1. interface declaration merging
+2.
 
 ### Casting
 
@@ -258,4 +268,429 @@ const cats: Movie = {
 
 ### Generics
 
-1. Queue Class with Generics
+1. Example of BuildIn Generics - querySelector Button.
+2. querySelector Button ???
+
+3. Queue Class with Generics ????
+
+# 20.9
+
+### Interfaces and Union
+
+1. key in item
+
+##### ex interfaces union and key in
+
+- Copy Paste the following code into index.ts file and fix the types issue.
+- use `key in`operator and print the relevant type.
+
+```typescript
+interface User {
+  name: string;
+  age: number;
+  occupation: string;
+}
+
+interface Admin {
+  name: string;
+  age: number;
+  role: string;
+}
+
+export type Person = unknown;
+
+export const persons: User[] = [
+  {
+    name: "Max Mustermann",
+    age: 25,
+    occupation: "Chimney sweep",
+  },
+  {
+    name: "Jane Doe",
+    age: 32,
+    role: "Administrator",
+  },
+  {
+    name: "Kate Müller",
+    age: 23,
+    occupation: "Astronaut",
+  },
+  {
+    name: "Bruce Willis",
+    age: 64,
+    role: "World saver",
+  },
+];
+
+export function logPerson(user: User) {
+  console.log(` - ${user.name}, ${user.age}`);
+}
+
+persons.forEach(logPerson);
+```
+
+### Omit And Pick
+
+Pick only take the items you define you want
+Omit will pick every item you don't define to omit
+
+##### Example_1:
+
+- SuperUser - { userId, address, etc.. roles: a|b|c[]}
+- Subscriber - with lower priviliges
+
+We should avoid using Omit<> and prefer Pick<> when we have more properties to omit than to pick.
+
+### Partial & Required
+
+##### Example_1:
+
+- Person and Partial Person
+- Person and required Person
+
+We should avoid using Omit<> and prefer Pick<> when we have more properties to omit than to pick.
+
+##### Ex_1
+
+Change the criteria type to include the relevant field from User.
+
+##### Ex_2
+
+Change the criteria so the 'type' key will be excluded;
+
+```typescript
+interface User {
+  type: "user";
+  name: string;
+  age: number;
+  occupation: string;
+}
+
+interface Admin {
+  type: "admin";
+  name: string;
+  age: number;
+  role: string;
+}
+
+export type Person = User | Admin;
+
+export const persons: Person[] = [
+  {
+    type: "user",
+    name: "Max Mustermann",
+    age: 25,
+    occupation: "Chimney sweep",
+  },
+  {
+    type: "admin",
+    name: "Jane Doe",
+    age: 32,
+    role: "Administrator",
+  },
+  {
+    type: "user",
+    name: "Kate Müller",
+    age: 23,
+    occupation: "Astronaut",
+  },
+  {
+    type: "admin",
+    name: "Bruce Willis",
+    age: 64,
+    role: "World saver",
+  },
+  {
+    type: "user",
+    name: "Wilson",
+    age: 23,
+    occupation: "Ball",
+  },
+  {
+    type: "admin",
+    name: "Agent Smith",
+    age: 23,
+    role: "Administrator",
+  },
+];
+
+export const isAdmin = (person: Person): person is Admin =>
+  person.type === "admin";
+export const isUser = (person: Person): person is User =>
+  person.type === "user";
+
+export function logPerson(person: Person) {
+  let additionalInformation = "";
+  if (isAdmin(person)) {
+    additionalInformation = person.role;
+  }
+  if (isUser(person)) {
+    additionalInformation = person.occupation;
+  }
+  console.log(` - ${person.name}, ${person.age}, ${additionalInformation}`);
+}
+
+export function filterUsers(persons: Person[], criteria: User): User[] {
+  return persons.filter(isUser).filter((user) => {
+    const criteriaKeys = Object.keys(criteria) as (keyof User)[];
+    return criteriaKeys.every((fieldName) => {
+      return user[fieldName] === criteria[fieldName];
+    });
+  });
+}
+
+console.log("Users of age 23:");
+
+filterUsers(persons, {
+  age: 23,
+}).forEach(logPerson);
+```
+
+##### Ex_3 (8)
+
+    8.Define type PowerUser which should have all fields
+    from both User and Admin (except for type),
+    and also have type 'powerUser' without duplicating
+    all the fields in the code.
+
+```typescript
+interface User {
+  type: "user";
+  name: string;
+  age: number;
+  occupation: string;
+}
+
+interface Admin {
+  type: "admin";
+  name: string;
+  age: number;
+  role: string;
+}
+
+type PowerUser = unknown;
+
+export type Person = User | Admin | PowerUser;
+
+export const persons: Person[] = [
+  {
+    type: "user",
+    name: "Max Mustermann",
+    age: 25,
+    occupation: "Chimney sweep",
+  },
+  { type: "admin", name: "Jane Doe", age: 32, role: "Administrator" },
+  { type: "user", name: "Kate Müller", age: 23, occupation: "Astronaut" },
+  { type: "admin", name: "Bruce Willis", age: 64, role: "World saver" },
+  {
+    type: "powerUser",
+    name: "Nikki Stone",
+    age: 45,
+    role: "Moderator",
+    occupation: "Cat groomer",
+  },
+];
+
+function isAdmin(person: Person): person is Admin {
+  return person.type === "admin";
+}
+
+function isUser(person: Person): person is User {
+  return person.type === "user";
+}
+
+function isPowerUser(person: Person): person is PowerUser {
+  return person.type === "powerUser";
+}
+
+export function logPerson(person: Person) {
+  let additionalInformation: string = "";
+  if (isAdmin(person)) {
+    additionalInformation = person.role;
+  }
+  if (isUser(person)) {
+    additionalInformation = person.occupation;
+  }
+  if (isPowerUser(person)) {
+    additionalInformation = `${person.role}, ${person.occupation}`;
+  }
+  console.log(`${person.name}, ${person.age}, ${additionalInformation}`);
+}
+
+console.log("Admins:");
+persons.filter(isAdmin).forEach(logPerson);
+
+console.log();
+
+console.log("Users:");
+persons.filter(isUser).forEach(logPerson);
+
+console.log();
+
+console.log("Power users:");
+persons.filter(isPowerUser).forEach(logPerson);
+```
+
+##### Ex_3 (9)
+
+    Remove UsersApiResponse and AdminsApiResponse types
+    and use generic type ApiResponse in order to specify API
+    response formats for each of the functions.
+
+```typescript
+interface User {
+  type: "user";
+  name: string;
+  age: number;
+  occupation: string;
+}
+
+interface Admin {
+  type: "admin";
+  name: string;
+  age: number;
+  role: string;
+}
+
+type Person = User | Admin;
+
+const admins: Admin[] = [
+  { type: "admin", name: "Jane Doe", age: 32, role: "Administrator" },
+  { type: "admin", name: "Bruce Willis", age: 64, role: "World saver" },
+];
+
+const users: User[] = [
+  {
+    type: "user",
+    name: "Max Mustermann",
+    age: 25,
+    occupation: "Chimney sweep",
+  },
+  { type: "user", name: "Kate Müller", age: 23, occupation: "Astronaut" },
+];
+
+export type ApiResponse<T> = unknown;
+
+type AdminsApiResponse =
+  | {
+      status: "success";
+      data: Admin[];
+    }
+  | {
+      status: "error";
+      error: string;
+    };
+
+export function requestAdmins(callback: (response: AdminsApiResponse) => void) {
+  callback({
+    status: "success",
+    data: admins,
+  });
+}
+
+type UsersApiResponse =
+  | {
+      status: "success";
+      data: User[];
+    }
+  | {
+      status: "error";
+      error: string;
+    };
+
+export function requestUsers(callback: (response: UsersApiResponse) => void) {
+  callback({
+    status: "success",
+    data: users,
+  });
+}
+```
+
+### typeOf Json
+
+- Product Example
+
+##### Ex_1
+
+- go to the following API `https://restcountries.com/v3.1/all`
+- create a type from country
+- create a react component `CountryCard`
+- component props will be combined from country without `nativeName`
+- send partial data to the component and present it
+
+### Awiated
+
+##### Example_1
+
+- getDate with Promise { Person }
+
+##### Ex_1
+
+- create a function `getCountries` fetch countries with ajax request from `https://restcountries.com/v3.1/all`
+- Return relevant type from the `getCountries` function.
+- Use `Awaited` in init/other function to show the relevant type without the promise
+
+##### Ex_2
+
+- improve the function `getCountries` to use generic type
+
+- create a function `getCountries` fetch countries with ajax request from `https://restcountries.com/v3.1/all`
+- Return relevant type from the `getCountries` function.
+- Use `Awaited`
+
+### Exclude
+
+Constructs a type by excluding from UnionType all union members that are assignable to ExcludedMembers.
+
+type T0 = Exclude<"a" | "b" | "c", "a">;
+
+type T0 = "b" | "c"
+type T1 = Exclude<"a" | "b" | "c", "a" | "b">;
+
+type T1 = "c"
+type T2 = Exclude<string | number | (() => void), Function>;
+
+type T2 = string | number
+
+### Extract
+
+Constructs a type by extracting from Type all union members that are assignable to Union.
+type T0 = Extract<"a" | "b" | "c", "a" | "f">;
+
+type T0 = "a"
+type T1 = Extract<string | number | (() => void), Function>;
+
+type T1 = () => void
+
+### Omit Vs Exclude
+
+The Omit type creates a new type by removing a property from a type.
+The Exclude type creates a new type by removing a constituent from a union type.
+The Omit type doesn't work on enums, but Exclude does.
+The Omit type is a combination of the Pick and the Exclude types.
+
+### Intrinsic String Manipulation Types
+
+Uppercase<StringType>
+Lowercase<StringType>
+Capitalize<StringType>
+Uncapitalize<StringType>
+
+### Record<Keys, Type>
+
+interface carDetails {
+price: number;
+model: string;
+}
+
+type carMan = "Tesla" | "bmw" | "lexus";
+
+const cats: Record<RocarMan, carDetails> = {
+Tesla: { age: 10, breed: "Persian" },
+bmw: { age: 5, breed: "Maine Coon" },
+lexus: { age: 16, breed: "British Shorthair" },
+};
+
+### ReturnType
+
+### Zod + nodejs
