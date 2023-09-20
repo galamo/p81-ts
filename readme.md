@@ -696,9 +696,12 @@ lexus: { age: 16, breed: "British Shorthair" },
 
 ### Declare
 
+api-ts
 declare is used to tell the compiler "this thing (usually a variable) exists already, and therefore can be referenced by other code, also there is no need to compile this statement into any JavaScript".
 
 ### ReturnType
+
+create Person and log Person example
 
 ### Dependency
 
@@ -717,5 +720,34 @@ function f(a: string | number, b: string | number) {
 ### Zod + nodejs
 
 ### overloads with declare
+
+```typescript
+type Config = {
+  name: boolean;
+  lastname: boolean;
+};
+type User = {
+  name?: string;
+  lastname?: string;
+};
+
+declare function getUser(config: Config): User;
+
+// test cases
+const user = getUser({ name: true, lastname: false });
+user.name;
+user.lastname;
+
+const user2 = getUser({ name: true, lastname: true });
+user2.name;
+user2.lastname;
+
+const user3 = getUser({ name: false, lastname: true });
+user3.name;
+user3.lastname;
+
+const user4 = getUser({ name: false, lastname: false });
+user4;
+```
 
 ### deprecation
