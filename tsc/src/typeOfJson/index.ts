@@ -5,10 +5,10 @@ interface Product {
   blbal: number;
 }
 
-type FullProduct = typeof productTemplate;
+type FullProduct = (typeof productTemplate)[0];
 
 function filterProducts(products: Array<FullProduct>) {
   return products.filter((item) => item.price > 900);
 }
-const result = filterProducts([productTemplate]);
+const result = filterProducts([productTemplate[0]]);
 console.log(result);
