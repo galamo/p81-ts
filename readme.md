@@ -356,12 +356,9 @@ We should avoid using Omit<> and prefer Pick<> when we have more properties to o
 
 We should avoid using Omit<> and prefer Pick<> when we have more properties to omit than to pick.
 
-##### Ex_1
+##### Ex_1+2
 
 Change the criteria type to include the relevant field from User.
-
-##### Ex_2
-
 Change the criteria so the 'type' key will be excluded;
 
 ```typescript
