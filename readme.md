@@ -256,7 +256,6 @@ Generics:
 ### interfaces
 
 1. interface declaration merging
-2.
 
 ### Casting
 
@@ -269,9 +268,8 @@ Generics:
 ### Generics
 
 1. Example of BuildIn Generics - querySelector Button.
-2. querySelector Button ???
-
-3. Queue Class with Generics ????
+2. querySelector Button
+3. Queue Class with Generics
 
 # 20.9
 
@@ -297,7 +295,7 @@ interface Admin {
   role: string;
 }
 
-export type Person = unknown;
+export type Person = unknown; // THIS IS WRONG!!!
 
 export const persons: User[] = [
   {
@@ -328,6 +326,14 @@ export function logPerson(user: User) {
 
 persons.forEach(logPerson);
 ```
+
+### keyof type operator
+
+The keyof operator takes an object type and produces a string or numeric literal union of its keys.
+
+##### Example_1:
+
+keyof Car object
 
 ### Omit And Pick
 
@@ -691,6 +697,24 @@ bmw: { age: 5, breed: "Maine Coon" },
 lexus: { age: 16, breed: "British Shorthair" },
 };
 
+### Declare
+
+declare is used to tell the compiler "this thing (usually a variable) exists already, and therefore can be referenced by other code, also there is no need to compile this statement into any JavaScript".
+
 ### ReturnType
+
+### Dependency
+
+try to create dependency between the function input and the function output
+
+```typescript
+function f(a: string | number, b: string | number) {
+  if (typeof a === "string") {
+    return a + ":" + b; // no error but b can be number!
+  } else {
+    return a + b; // error as b can be number | string
+  }
+}
+```
 
 ### Zod + nodejs

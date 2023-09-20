@@ -66,3 +66,24 @@ persons.forEach(extractAdditionalInfo);
 // type Test = {
 //   [key: string]: { value: number; [key: number]: string; title: string };
 // };
+
+interface Product {
+  title: string;
+  price: number;
+  id: number;
+  category: string; // change it in a while.
+}
+
+interface Product {
+  expirationDate: string;
+}
+
+function getProduct(): Product {
+  return {
+    title: "banana",
+    price: 1,
+    id: 1234,
+    category: "Veg",
+    expirationDate: new Date().toISOString(),
+  };
+}
