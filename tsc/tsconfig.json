@@ -4,7 +4,9 @@
     "module": "commonjs",
     "outDir": "./dist",
     "rootDir": "./src",
-    "target": "ES5"
+    "target": "ES5",
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   },
   "exclude": ["node_modules"]
 }

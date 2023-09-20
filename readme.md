@@ -715,3 +715,7 @@ function f(a: string | number, b: string | number) {
 ```
 
 ### Zod + nodejs
+
+### overloads with declare
+
+### deprecation
