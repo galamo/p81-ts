@@ -8,6 +8,13 @@ import {
 } from "./ui-components/countryCard";
 import { getCountries } from "./service/countries.service";
 
+async function getApplicationData() {
+  return 1;
+}
+
+const result = await getApplicationData();
+console.log(result);
+
 function App() {
   const [countries, setCountries] = useState<Array<Country>>([]);
   useEffect(() => {

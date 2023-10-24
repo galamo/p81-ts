@@ -751,3 +751,13 @@ user4;
 ```
 
 ### deprecation
+
+## Modules
+
+1. Using module - commonjs
+2. Using type module - package.json ( using import )
+3. Using mjs ext, combine import and require
+
+express, using requestid
+d.ts more examples
+zod
