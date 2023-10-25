@@ -1,13 +1,14 @@
 import express, { NextFunction, Request, Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import bodyParser from "body-parser";
+import productsRouter from "./products";
 import {
   addReq,
   authToken,
   overloadError,
   overloadSendJson,
 } from "./middleware";
-import axios from "axios";
 dotenv.config();
 
 const app = express();
@@ -24,11 +25,9 @@ declare global {
     }
   }
 }
-
 interface MyRequest extends Express.Request {
   reqId: string;
 }
-
 export type HTTPResponse = {
   data: any;
   message: string;
@@ -36,28 +35,16 @@ export type HTTPResponse = {
 };
 
 app.use(cors());
+app.use(bodyParser.json());
 app.use(addReq);
 app.use(authToken);
 app.use(overloadError);
 app.use(overloadSendJson);
 
-app.get("/products-error", function (req: Request, res: Response, next) {
-  next(new Error("Go to the error handler"));
-});
-
-app.get("/products", async function (req: Request, res: Response, next) {
-  try {
-    const result = await axios.get("https://dummyjson.com/products");
-    res.sendJson({ data: result.data, message: "Ok" });
-  } catch (error: any) {
-    next(error.message);
-  }
-});
-
 app.get("/healthcheck", function (req, res, next) {
   res.send("App is running ");
 });
-
+app.use("/products", productsRouter);
 app.use((error: any, req: Request, res: Response, next: NextFunction) => {
   res.setHeader("x-request-id", `reqId-${req.reqId}`);
   res.sendError("something went wrong sendError function"); // send status 500 , print to logs
