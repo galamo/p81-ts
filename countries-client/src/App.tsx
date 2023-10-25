@@ -3,6 +3,7 @@ import "./App.css";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import AboutPage from "./components/pages/about";
 import CountriesPage from "./components/pages/country-page";
+import { ProductsPage } from "./components/pages/products";
 
 export const routes = [
   {
@@ -15,6 +16,12 @@ export const routes = [
     path: "/about",
     element: <AboutPage />,
     text: "about",
+    isVisible: true,
+  },
+  {
+    path: "/products",
+    element: <ProductsPage />,
+    text: "products",
     isVisible: true,
   },
 ];
