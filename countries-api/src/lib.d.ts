@@ -3,3 +3,4 @@
  */
 export declare function calcTax(value: number): number | undefined;
 export declare function calcTax(): number;
+export declare type User = { u: string; n: string };
