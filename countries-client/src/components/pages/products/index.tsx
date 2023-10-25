@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { HTTPResponse } from "@serverTypes/index";
-export function ProductsPage() {
+export default function ProductsPage() {
   const [products, setProducts] = useState<Array<any>>([]);
   useEffect(() => {
     async function getData() {

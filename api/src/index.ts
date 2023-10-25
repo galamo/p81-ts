@@ -52,3 +52,10 @@ app.use((error: any, req: Request, res: Response, next: NextFunction) => {
 });
 
 app.listen(process.env.PORT);
+
+const getUser = (user: string): string | number => {
+  if (typeof user === "string") return user + "@gmail.com";
+  else return 1;
+};
+
+const result = getUser("Ori");

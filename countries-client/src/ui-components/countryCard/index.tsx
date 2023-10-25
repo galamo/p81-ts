@@ -36,12 +36,12 @@ export function CountryCard(props: {
   country: CountryProps;
   region: ResionsUI;
 }) {
-  const { country, region } = props;
+  const { country } = props;
   return (
     <div className={style.country}>
       <h1>{country.name?.common} </h1>
       <h2>{country.region} </h2>
-      <h3>{region}</h3>
+      <img src={country.flag} height={100} width={100} />
     </div>
   );
 }

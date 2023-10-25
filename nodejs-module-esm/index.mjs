@@ -1,5 +1,7 @@
-import { getStats } from "./lib.mjs";
+import { getStats } from "./lib.mjs"; // fastify plugin
+import { user } from "./lib2.js";
 
+console.log(user);
 console.log(getStats());
 
 async function getDate() {
