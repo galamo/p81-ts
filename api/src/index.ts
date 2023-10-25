@@ -25,6 +25,10 @@ declare global {
   }
 }
 
+interface MyRequest extends Express.Request {
+  reqId: string;
+}
+
 export type HTTPResponse = {
   data: any;
   message: string;
