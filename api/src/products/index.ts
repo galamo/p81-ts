@@ -30,6 +30,7 @@ const productSchema = zod.object({
   rating: zod.number().max(10),
   category: zod.enum(["dairy", "drinks", "food", "fruits"]),
 });
+
 const productsCart = zod.object({
   product: productSchema,
   cartId: zod.number(),
