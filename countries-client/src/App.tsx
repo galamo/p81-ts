@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
+import { User } from "@serverTypes/lib";
 import "./App.css";
 // import CountryItem from "./ui-components/countryCard";
+
+const u: User = { u: "s", n: "1" };
+console.log(u);
+
 import {
   Country,
   CountryCard,
