@@ -49,7 +49,12 @@ router.post("/", function (req: Request, res: Response, next: NextFunction) {
     return next(new Error("Input validation"));
   }
 });
-
-// add to cart / POST
-
+// products/cart /POST
+router.post(
+  "/cart",
+  function (req: Request, res: Response, next: NextFunction) {
+    // Product
+    // cartId
+  }
+);
 export default router;
