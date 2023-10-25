@@ -1,40 +1,46 @@
-import { useEffect, useState } from "react";
 import "./App.css";
 // import CountryItem from "./ui-components/countryCard";
-import {
-  Country,
-  CountryCard,
-  RegionsStrings,
-} from "./ui-components/countryCard";
-import { getCountries } from "./service/countries.service";
+import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import AboutPage from "./components/pages/about";
+import CountriesPage from "./components/pages/country-page";
+
+export const routes = [
+  {
+    path: "/",
+    element: <CountriesPage />,
+    text: "countries",
+    isVisible: true,
+  },
+  {
+    path: "/about",
+    element: <AboutPage />,
+    text: "about",
+    isVisible: true,
+  },
+];
 
 function App() {
-  const [countries, setCountries] = useState<Array<Country>>([]);
-  useEffect(() => {
-    async function getData() {
-      const result = await getCountries();
-      setCountries(result);
-    }
-    getData();
-  }, []);
-
   return (
     <>
-      <div>
-        {countries.map((item) => {
-          return (
-            <CountryCard
-              region={item.region as Capitalize<RegionsStrings>}
-              country={{
-                name: {
-                  common: item?.name?.common,
-                  official: item?.name?.official,
-                },
-                region: "Asia",
-              }}
-            />
-          );
-        })}
+      <div className="App">
+        <BrowserRouter>
+          <div style={{ position: "absolute", top: "0", left: "40%" }}>
+            {routes
+              .filter((r) => r.isVisible)
+              .map((r: any) => {
+                return (
+                  <span key={r.path}>
+                    <Link to={r.path}> {r.text.toUpperCase()}</Link> |
+                  </span>
+                );
+              })}
+          </div>
+          <Routes>
+            {routes.map((r: any) => {
+              return <Route key={r.path} {...r} />;
+            })}
+          </Routes>
+        </BrowserRouter>
       </div>
     </>
   );
