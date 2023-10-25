@@ -30,8 +30,13 @@ const productSchema = zod.object({
   rating: zod.number().max(10),
   category: zod.enum(["dairy", "drinks", "food", "fruits"]),
 });
+const productsCart = zod.object({
+  product: productSchema,
+  cartId: zod.number(),
+});
 
 type Product = zod.infer<typeof productSchema>;
+type ProductCart = zod.infer<typeof productsCart>;
 
 router.post("/", function (req: Request, res: Response, next: NextFunction) {
   const body: Product = req.body;
@@ -53,8 +58,20 @@ router.post("/", function (req: Request, res: Response, next: NextFunction) {
 router.post(
   "/cart",
   function (req: Request, res: Response, next: NextFunction) {
-    // Product
-    // cartId
+    try {
+      const body: ProductCart = req.body;
+      productsCart.parse(body);
+      let msg = "";
+      if (body.product.rating > 5) {
+        msg = "great rating!!";
+      } else {
+        msg = "how can i improve this product?";
+      }
+      res.json({ message: `Product added to Cart ${body.cartId} `, msg });
+    } catch (error) {
+      console.log(error);
+      return next(new Error("Input validation"));
+    }
   }
 );
 export default router;
