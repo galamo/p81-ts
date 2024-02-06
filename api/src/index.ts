@@ -41,7 +41,8 @@ app.use(authToken);
 app.use(overloadError);
 app.use(overloadSendJson);
 
-app.get("/healthcheck", function (req, res, next) {
+app.get("/healthcheck", function (req: MyRequest, res, next) {
+  console.log(req.reqId);
   res.send("App is running ");
 });
 app.use("/products", productsRouter);

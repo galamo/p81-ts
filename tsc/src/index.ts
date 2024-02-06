@@ -1,6 +1,6 @@
-import doSomething from "./types";
-import functions from "./functions";
-import init from "./arrays";
+import doSomething from "./Example_1_Types";
+import functions from "./Example_4_Functions";
+import init from "./Example_3_arrays";
 init();
 functions();
 doSomething();

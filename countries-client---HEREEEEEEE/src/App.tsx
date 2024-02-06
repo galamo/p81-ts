@@ -5,12 +5,14 @@ import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 
 import { Suspense } from "react";
 import FilterDefferedValue from "./components/pages/filter-deffered-value";
+import { NewPageSuspense } from "./components/pages/NewPage";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const ReportsLazy = lazy(() => import("./components/pages/reports-page"));
 const ProductsPageLazy = lazy(() => import("./components/pages/products"));
 const CountriesPageLazy = lazy(() => import("./components/pages/country-page"));
 const AboutPageLazy = lazy(() => import("./components/pages/about"));
-
+const queryClient = new QueryClient();
 export const routes = [
   {
     path: "/",
@@ -18,6 +20,13 @@ export const routes = [
     text: "countries",
     isVisible: true,
   },
+  {
+    path: "/NewPageSuspense",
+    element: <NewPageSuspense />,
+    text: "NewPageSuspense",
+    isVisible: true,
+  },
+
   {
     path: "/about",
     element: <AboutPageLazy />,
@@ -49,30 +58,32 @@ type RouteType = (typeof routes)[0];
 function App() {
   return (
     <>
-      <div className="App">
-        <BrowserRouter>
-          <div style={{ position: "absolute", top: "0", left: "40%" }}>
-            {routes
-              .filter((r) => r.isVisible)
-              .map((r: RouteType) => {
-                return (
-                  <span key={r.path}>
-                    <Link to={r.path}> {r.text.toUpperCase()}</Link> |
-                  </span>
-                );
-              })}
-          </div>
-          <Suspense fallback={<h1>Loading....</h1>}>
-            <div style={{ marginTop: "50px" }}>
-              <Routes>
-                {routes.map((r: RouteType) => {
-                  return <Route key={r.path} {...r} />;
+      <QueryClientProvider client={queryClient}>
+        <div className="App">
+          <BrowserRouter>
+            <div style={{ position: "absolute", top: "0", left: "40%" }}>
+              {routes
+                .filter((r) => r.isVisible)
+                .map((r: RouteType) => {
+                  return (
+                    <span key={r.path}>
+                      <Link to={r.path}> {r.text.toUpperCase()}</Link> |
+                    </span>
+                  );
                 })}
-              </Routes>
             </div>
-          </Suspense>
-        </BrowserRouter>
-      </div>
+            <Suspense fallback={<h1>Loading....</h1>}>
+              <div style={{ marginTop: "50px" }}>
+                <Routes>
+                  {routes.map((r: RouteType) => {
+                    return <Route key={r.path} {...r} />;
+                  })}
+                </Routes>
+              </div>
+            </Suspense>
+          </BrowserRouter>
+        </div>
+      </QueryClientProvider>
     </>
   );
 }
