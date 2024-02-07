@@ -12,9 +12,12 @@ interface Song {
 }
 
 class PlayList<T> {
-  private queue: T[] = [];
+  private list: T[] = [];
   add(someElement: T) {
-    this.queue.push(someElement);
+    this.list.push(someElement);
+  }
+  play(item: T) {
+    this.list.splice(0, 1);
   }
 }
 
@@ -26,7 +29,11 @@ songs.add({
   writer: "Snir SW",
 });
 
-function mergeFunction<T extends Song, U>(obj1: T, obj2: U): T & U {
+//  BEFORE EXPLAIN ON EXTENDS
+function mergeFunction<T extends Song, U extends Video>(
+  obj1: T,
+  obj2: U
+): T & U {
   return {
     ...obj1,
     ...obj2,
@@ -34,7 +41,9 @@ function mergeFunction<T extends Song, U>(obj1: T, obj2: U): T & U {
 }
 const combinedObj = mergeFunction(
   { artist: "test", length: 2, name: "test", writer: "test", temp: 1 },
-  { user: "Gal", age: 34 }
+  { artist: { firstName: "Gal" } }
 );
 
 console.log(combinedObj.artist);
+
+const item = document.querySelector<HTMLInputElement>("#id");

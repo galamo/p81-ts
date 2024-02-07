@@ -17,7 +17,7 @@ combinedArray.push(1);
 combinedArray.push("1");
 combinedArray.push(true);
 
-const gameBoard: number[][][] = [[[1]]];
+const gameBoard: (number | string)[][][] = [[["aa"], [2]]];
 
 function getLocation(loc: number[]): Coords | Point {
   const [x, y] = loc;

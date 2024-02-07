@@ -20,6 +20,13 @@ interface Admin {
 type PowerUser = Omit<User, "type"> &
   Omit<Admin, "type"> & { type: "powerUser" };
 
+const powerUser: PowerUser = {
+  name: "",
+  age: 1,
+  occupation: "A",
+  type: "powerUser",
+  role: "aa",
+};
 export type Person = User | Admin | PowerUser;
 
 export const persons: Person[] = [

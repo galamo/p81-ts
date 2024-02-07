@@ -34,6 +34,7 @@ const car: Car = {
 };
 
 const result = getProperty(car, "lp");
+type Temp = typeof Car;
 
 type Size = keyof typeof EngineSizes;
 

@@ -52,3 +52,17 @@ function getUserGameInstance(): Required<GameUser> {
   };
   return gameUserInstance;
 }
+
+type UserAddress = {
+  firstName: string;
+  address: {
+    city: string;
+    blockNum?: number;
+  };
+  lastName?: string;
+};
+setUser({ lastName: "", firstName: "Gal", address: { city: "ashdod" } });
+function setUser(u: Required<UserAddress>) {
+  console.log(u);
+  // save u with all props
+}
